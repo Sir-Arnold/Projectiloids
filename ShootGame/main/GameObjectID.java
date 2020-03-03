@@ -1,11 +1,7 @@
-package com.shootGame.main;
-
+package com.shootGame.main; 
+  
 public enum GameObjectID 
-{
-	Player(),
-	enemySentry(),
-	Projectile(),
-	Ghost(),
-	
-}
-
+{ 
+   Player,  enemySentry,  Projectile,  Ghost; 
+} 
+  

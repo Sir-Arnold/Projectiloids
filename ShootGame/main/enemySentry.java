@@ -12,9 +12,6 @@ public class enemySentry extends GameObject
 	protected double radius;
 	protected double halfRadius;
 	protected double speed;
-	protected Vector headingVector;
-	protected Vector velocityVector;
-	protected Vector body;
 	protected double speedGuage;
 	protected double angle;
 	protected double vel;
@@ -214,13 +211,19 @@ public class enemySentry extends GameObject
 	
 	public void makeProjectile(int x, int y, double angle)
 	{
-		this.handler.addObject(new Projectile((int) (x + radius * Math.cos(angle)) + 1, (int) (y + radius * Math.sin(angle)) + 1, GameObjectID.Projectile, 4, 5.0, angle, this.handler, "red", GameObjectID.enemySentry));
+		this.handler.addObject(new Projectile((int) (x + radius * Math.cos(angle)) + 1, (int) (y + radius * Math.sin(angle)) + 1, GameObjectID.Projectile, 4, 5.0, angle, this.handler, GameObjectID.enemySentry));
 	}
 
 	@Override
 	public void setColor(String COLOR) {
 		this.color = Color.getColor(COLOR);
 		
+	}
+
+	@Override
+	public double getAngle() 
+	{
+		return 0.0;
 	}
 
 }

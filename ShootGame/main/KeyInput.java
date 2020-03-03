@@ -66,13 +66,17 @@ public class KeyInput extends java.awt.event.KeyAdapter
             } 
             if (key == KeyEvent.VK_F) 
             { 
-               System.out.println(tempObject.getID() + ":  " + " Heading: " + tempObject.getHeading() + " - Going: " + tempObject.getGoing() + " - Velocity of X: " + tempObject.getVelX() + ", Velosity for Y: " + tempObject.getVelY() + " X: " + tempObject.getX() + " Y: " + tempObject.getY()); 
+               System.out.println(tempObject.getID() + ":  " + " Heading: " + tempObject.getHeading() + " - Going: " + tempObject.getGoing() + " - Velocity of X: " + tempObject.getVelX() + ", Velocity for Y: " + tempObject.getVelY() + " X: " + tempObject.getX() + " Y: " + tempObject.getY()); 
             } 
             
           } 
           if (key == KeyEvent.VK_R) 
           { 
             handler.restart(); 
+            upIsDown = 0;
+            rightIsDown = 0;
+            leftIsDown = 0;
+            downIsDown = 0;
           } 
         
          if (key == KeyEvent.VK_G) 
