@@ -18,7 +18,7 @@ public class Ghost
    //private int radius = 1; 
    //private double SPEED = 1.0D; 
     
-  protected static float redVal; 
+   protected static float redVal; 
    protected int redMult; 
    protected static float greenVal; 
    protected int greenMult; 
@@ -74,18 +74,18 @@ public class Ghost
      } else if (blueVal < 0.005D) { 
        blueMult = 1; 
      } 
-     String[] differentFonts = GraphicsEnvironment.getLocalGraphicsEnvironment() 
-       .getAvailableFontFamilyNames(); 
-     String comicSans = differentFonts[5]; 
-     Font font = new Font(comicSans, 0, 30); 
-     g.setFont(font); 
+     
+     String[] differentFonts = GraphicsEnvironment.getLocalGraphicsEnvironment() .getAvailableFontFamilyNames(); 
+     String comicSans = differentFonts[4];
+     String someFont = differentFonts[3];
+     Font sans = new Font(comicSans, 0, 30); 
+     Font someFontIG = new Font(someFont, 0, 30);
+     g.setFont(sans); 
       
  
     Color color = new Color(redVal, greenVal, blueVal); 
       
     g.setColor(color); 
-    
-    
     
     g.drawString(handler.handlerTime + "", 785, 30); 
       
@@ -96,7 +96,6 @@ public class Ghost
          if (((GameObject)handler.objects.get(1)).getID() != GameObjectID.Player) 
          { 
            g.drawString("Press \"R\" to restart", 700, 450); 
-           Game.timeTimer = 0.0D; 
          }
          else
          {
@@ -119,6 +118,13 @@ public class Ghost
        g.drawString("Press \"R\" to restart", 700, 450); 
        Game.timeTimer = 0.0D; 
      } 
+    
+    if(handler.getMenuState().equals("gameMenu") && !handler.playerIsDead())
+    {
+    	g.setFont(someFontIG);
+    	g.drawString("Paused", 700, 425);
+    }
+    
      
     if (handler.getSize() > 1) 
     { 
@@ -171,7 +177,7 @@ public class Ghost
 @Override
 public double getAngle() 
 {
-	return 0.0;
+	return 0;
 } 
 } 
   

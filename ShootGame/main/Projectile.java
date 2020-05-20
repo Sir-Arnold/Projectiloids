@@ -60,9 +60,9 @@ public class Projectile extends GameObject
  
   public void tick(double delta) 
    { 
-	  if ((x + velX > 0.0D) && (x + velX < 1600.0D)) 
+	  if ((x + velX > 0.0D) && (x + velX < GameInfo.windowWidth)) 
      { 
-       if ((y + velY > 0.0D) && (y + velY < 900.0D)) 
+       if ((y + velY > 0.0D) && (y + velY < GameInfo.windowHeight - 20)) 
        { 
     	 velX = (speed * Math.cos(angle)); 
          velY = (speed * Math.sin(angle));
@@ -82,9 +82,9 @@ public class Projectile extends GameObject
          x = ((int)(x + velX)); 
          y = ((int)(y + velY)); 
        } 
-       else if (y + velY > 900.0D) 
+       else if (y + velY > GameInfo.windowHeight - 20) 
        { 
-         angle *= -1.0D; 
+    	 angle *= -1.0D; 
          if (angle > 6.283185307179586D) { 
            angle -= 6.283185307179586D; 
          } else if (angle < 0) { 
@@ -100,7 +100,7 @@ public class Projectile extends GameObject
     } 
      else if (x + velX < 0.0D) 
      { 
-       angle = (-1.0D * (angle - Math.toRadians(180.0D))); 
+       angle = (long)(-1.0D * (angle - Math.toRadians(180.0))); 
        if (angle > 6.283185307179586D) { 
          angle -= 6.283185307179586D; 
        } else if (angle < 0) { 
@@ -111,9 +111,9 @@ public class Projectile extends GameObject
        x = ((int)(x + velX)); 
        y = ((int)(y + velY)); 
      } 
-     else if (x + velX > 1600.0D) 
+     else if (x + velX > GameInfo.windowWidth) 
      { 
-       angle = (-1.0D * (angle - Math.toRadians(180.0D))); 
+       angle = (long)(-1.0D * (angle - Math.toRadians(180.0D))); 
        if (angle > 6.283185307179586D) { 
          angle -= 6.283185307179586D; 
        } else if (angle < 0) { 

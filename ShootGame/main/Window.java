@@ -14,11 +14,11 @@ public class Window
    { 
      frame = new JFrame(title); 
       
-    frame.setPreferredSize(new Dimension(width, height)); 
+     frame.setPreferredSize(new Dimension(width, height)); 
      frame.setMaximumSize(new Dimension(width, height)); 
      frame.setMinimumSize(new Dimension(width, height)); 
       
-    frame.setDefaultCloseOperation(3); 
+     frame.setDefaultCloseOperation(3); 
      frame.setResizable(false); 
      frame.setLocationRelativeTo(null); 
      frame.add(game); 

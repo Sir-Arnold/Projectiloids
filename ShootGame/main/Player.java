@@ -58,7 +58,7 @@ public class Player
       
     radius = ((int)Math.sqrt(0 + (size - 0) * (size - 0))); 
      apothom = Math.cos(Math.toRadians(45.0D)); 
-     angle = 0.00D; 
+     angle = 0; 
       
     delta = 1.0D; 
       
@@ -66,12 +66,12 @@ public class Player
      velX = 0.0D; 
      velY = 0.0D; 
       
-    velTurn = 0.00D; 
-     velTurnMax = 0.25D; 
+    velTurn = 0; 
+     velTurnMax = 0.25; 
       
     maxVel = 100.0D; 
      acceleration = 10.0D; 
-     angleChange = 0.01D; //
+     angleChange = 0.005; 
       
     this.color = Color.blue; 
       
@@ -220,13 +220,13 @@ public class Player
 	       } 
 	     } else if (turnDirection == -1) 
 	     { 
-	       velTurnGoal -= angleChange; 
+	       velTurnGoal -= angleChange;
 	       if (velTurnGoal <= -velTurnMax) { 
 	         velTurnGoal = (-velTurnMax); 
 	       } 
 	     } else if (turnDirection == 0) 
 	     { 
-	       velTurnGoal = 0.0D; 
+	       velTurnGoal = 0; 
 	     } 
 	  angle += velTurnGoal * delta;
 	  super.angle = angle;

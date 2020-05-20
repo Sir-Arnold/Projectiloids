@@ -128,6 +128,10 @@ public class SpecialAlgorithms {
    { 
      return (int)(val * 1000.0D) / 1000.0D; 
    } 
+  public static double roundToHundredths(double val) 
+  { 
+    return (int)(val * 100.0D) / 100.0D; 
+  } 
     
   public static double medianDegrees(double valA, double valB) 
    { 

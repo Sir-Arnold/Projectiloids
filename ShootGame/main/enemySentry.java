@@ -223,7 +223,7 @@ public class enemySentry extends GameObject
 	@Override
 	public double getAngle() 
 	{
-		return 0.0;
+		return 0;
 	}
 
 }

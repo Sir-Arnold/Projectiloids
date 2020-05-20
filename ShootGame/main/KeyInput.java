@@ -11,57 +11,77 @@ public class KeyInput extends java.awt.event.KeyAdapter
    public boolean checkingPress; 
    public boolean checkingRelease; 
     
-  private int leftIsDown; 
+   private int leftIsDown; 
    private int rightIsDown; 
    private int upIsDown; 
    private int downIsDown; 
    private int shootIsDown; 
     
-  private int moveSum; 
+   private int moveSum; 
    private int turnSum; 
     
-  public KeyInput(Handler handler, Game game, Window window) 
+   public KeyInput(Handler handler, Game game, Window window) 
    { 
-     System.out.println("Key Input Constructing..."); 
-     this.handler = handler; 
-     this.game = game; 
-     this.window = window; 
-     System.out.println("Key Input Constructed."); 
-     checkingPress = true; 
-     checkingRelease = false; 
+      System.out.println("Key Input Constructing..."); 
+      this.handler = handler; 
+      this.game = game; 
+      this.window = window; 
+      System.out.println("Key Input Constructed."); 
+      checkingPress = true; 
+      checkingRelease = false; 
    } 
     
  
-  public void keyPressed(KeyEvent e) 
+   public void keyPressed(KeyEvent e) 
    { 
-     int key = e.getKeyCode(); 
-        for (int i = 0; i < handler.objects.size(); i++) 
-        { 
-          GameObject tempObject = (GameObject)handler.objects.get(i); 
-          if(tempObject.getID() == GameObjectID.Player) 
-          { 
+     
+      int key = e.getKeyCode(); 
+	  if(key == KeyEvent.VK_P) 
+      { 
+      	  if(!handler.playerIsDead())
+      	  {
+      	     if(handler.getMenuState().equals("game"))
+      		    handler.pause(); 
+      		 else
+      			handler.unpause();
+      	  }
+      } 
+	  if (key == KeyEvent.VK_R) 
+      { 
+         handler.restart(); 
+         upIsDown = 0;
+         rightIsDown = 0;
+         leftIsDown = 0;
+         downIsDown = 0;
+         shootIsDown = 0;
+      } 
+      for (int i = 0; i < handler.objects.size(); i++) 
+      { 
+         GameObject tempObject = (GameObject)handler.objects.get(i); 
+         if(tempObject.getID() == GameObjectID.Player && handler.getMenuState().equals("game"))
+         { 
             if(key == KeyEvent.VK_W) 
             { 
-              upIsDown = 1; 
+               upIsDown = 1; 
             } 
             else if(!(key != KeyEvent.VK_W || key != KeyEvent.VK_S || key != KeyEvent.VK_A || key != KeyEvent.VK_D)) 
             { 
-              upIsDown = 0; 
+               upIsDown = 0; 
             } 
             if(key == KeyEvent.VK_D)  
-           { 
-              rightIsDown = 1; 
+            { 
+               rightIsDown = 1; 
             } 
-            if (key == KeyEvent.VK_A)  
-           { 
-              leftIsDown = 1; 
+            if(key == KeyEvent.VK_A)  
+            { 
+               leftIsDown = 1; 
             } 
-            if (key == KeyEvent.VK_S) 
+            if(key == KeyEvent.VK_S) 
             { 
               downIsDown = 1; 
             } 
-            if (key == KeyEvent.VK_SPACE)  
-           { 
+            if(key == KeyEvent.VK_SPACE)  
+            { 
               shootIsDown = 1; 
             } 
             if (key == KeyEvent.VK_F) 
@@ -69,63 +89,56 @@ public class KeyInput extends java.awt.event.KeyAdapter
                System.out.println(tempObject.getID() + ":  " + " Heading: " + tempObject.getHeading() + " - Going: " + tempObject.getGoing() + " - Velocity of X: " + tempObject.getVelX() + ", Velocity for Y: " + tempObject.getVelY() + " X: " + tempObject.getX() + " Y: " + tempObject.getY()); 
             } 
             
-          } 
-          if (key == KeyEvent.VK_R) 
-          { 
-            handler.restart(); 
-            upIsDown = 0;
-            rightIsDown = 0;
-            leftIsDown = 0;
-            downIsDown = 0;
-          } 
+         } 
+          
         
          if (key == KeyEvent.VK_G) 
-          { 
+         { 
             System.out.print("\n"); 
             System.out.println("Game Objects: "); 
             for (int j = 0; j < handler.objects.size(); j++) 
             { 
-              GameObject thisObject = (GameObject)handler.objects.get(j); 
-              System.out.println(thisObject.getID()); 
+               GameObject thisObject = (GameObject)handler.objects.get(j); 
+               System.out.println(thisObject.getID()); 
             } 
             System.out.print("\n"); 
           } 
            
-         keyInterpret(tempObject); 
-        } 
-    } 
+      keyInterpret(tempObject); 
+      } 
+   } 
   
  
-  public void keyReleased(KeyEvent e) 
+   public void keyReleased(KeyEvent e) 
    { 
-     int key = e.getKeyCode(); 
+      int key = e.getKeyCode(); 
          
-       for (int i = 0; i < handler.objects.size(); i++) 
-        { 
-          GameObject tempObject = (GameObject)handler.objects.get(i); 
+      for (int i = 0; i < handler.objects.size(); i++) 
+      { 
+         GameObject tempObject = (GameObject)handler.objects.get(i); 
         
          if (tempObject.getID() == GameObjectID.Player) 
-          { 
+         { 
   
-           if(key == KeyEvent.VK_W) 
+            if(key == KeyEvent.VK_W) 
             { 
                upIsDown = 0; 
             } 
             if(key == KeyEvent.VK_D) 
             { 
-              rightIsDown = 0; 
+               rightIsDown = 0; 
             } 
             if(key == KeyEvent.VK_A)  
            { 
-              leftIsDown = 0; 
+               leftIsDown = 0; 
             } 
             if (key == KeyEvent.VK_S) 
             { 
-              downIsDown = 0; 
+               downIsDown = 0; 
             } 
             if (key == KeyEvent.VK_SPACE)  
-           { 
-              shootIsDown = 0; 
+            { 
+               shootIsDown = 0; 
             } 
           } 
            
@@ -134,13 +147,13 @@ public class KeyInput extends java.awt.event.KeyAdapter
     } 
      
    public void keyInterpret(GameObject tempObject) 
-    { 
-       moveSum = upIsDown - downIsDown; 
-       turnSum = rightIsDown - leftIsDown; 
+   { 
+      moveSum = upIsDown - downIsDown; 
+      turnSum = rightIsDown - leftIsDown; 
         
       tempObject.accelerate(moveSum); 
-       tempObject.angle(turnSum); 
-       tempObject.shoot(shootIsDown); 
-    } 
-  } 
+      tempObject.angle(turnSum); 
+      tempObject.shoot(shootIsDown); 
+   } 
+} 
   
